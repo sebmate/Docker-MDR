@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?> <postgresql
+    xmlns="http://schema.samply.de/common"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schema.samply.de/common http://schema.samply.de/config/PostgreSQL.xsd">
+    <host>mdr-postgres</host>
+    <database>mdr</database>
+    <username>mdr</username>
+    <password>mdr</password>
+</postgresql>

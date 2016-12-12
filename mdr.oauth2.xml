@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oAuth2Client
+xmlns="http://schema.samply.de/config/OAuth2Client"
+xmlns:xml="http://www.w3.org/XML/1998/namespace"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://schema.samply.de/config/OAuth2Client http://schema.samply.de/config/OAuth2Client.xsd">
+
+<host>https://dev02.imbei.uni-mainz.de/auth</host>
+<hostPublicKey>
+xxxxxxxxxxxx
+</hostPublicKey>
+<clientId>xxxxxxxxxxxx</clientId>
+<clientSecret>xxxxxxxxxxxx</clientSecret>
+
+</oAuth2Client>

@@ -1,0 +1,35 @@
+# This installs and configures the Mainz MDR in Docker.
+# Made by Sebastian Mate (sebastian.mate@fau.de) as part of the Dockerbank TMF project in June 2016
+
+# Installation procedure:
+
+#   - Modify mdr.postgres.xml to your desired database settings (i.e., password, database name), modify the 4th command below accordingly.
+#   - Replace mdr.oauth2.xml with the one provided by the team in Mainz
+#   - Execute the command below, which should start the MDR docker container. There, execute: "service tomcat7 start"
+#   - Access http://localhost:8080/mdr-gui-1.9.0
+#   - Register your account over the Mainz authentication service
+#   - Access http://localhost:8080/mdr-gui-1.9.0/admin (user: "mdr", password: "mdr")
+#   - Allow the new user (that you have just created) to create new namespaces, etc.
+#   - Go back to http://localhost:8080/mdr-gui-1.9.0 and enjoy the Mainz Samply MDR
+
+# Delete, install and run the Postgres container:
+
+docker pull postgres:latest
+docker stop postgres-mdr
+docker rm postgres-mdr
+docker run --name postgres-mdr -e POSTGRES_PASSWORD=mdr -e POSTGRES_USER=mdr -e POSTGRES_DB=mdr -d postgres
+
+# Delete, install and run the MDR container:
+
+docker stop mdr
+docker rm mdr
+docker build -t tmfev/mdr:1.00 .
+docker run --cap-add=SYS_PTRACE -v /etc/localtime:/etc/localtime:ro -it -p 8080:8080 --name mdr --link postgres-mdr:postgres tmfev/mdr:1.00 /bin/bash
+
+# In the container, run (post-installation):
+
+service tomcat7 start
+
+# To display the Tomcat server log, run:
+
+cat /var/lib/tomcat7/logs/catalina.out
